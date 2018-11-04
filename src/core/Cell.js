@@ -43,7 +43,7 @@ class Cell {
       this.alive = false;
     } else if (this.alive && (count === 2 || count === 3)) {
       this.alive = true;
-    } else if (!this.alive && count === 3) {
+    } else if ((!this.alive) && count === 3) {
       this.alive = true;
     } else {
       this.alive = false;

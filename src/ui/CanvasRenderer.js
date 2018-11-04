@@ -11,7 +11,7 @@ class CanvasRenderer extends BaseRenderer {
   constructor(gridData) {
     super(gridData);
     this.canvas = document.createElement('canvas');
-    this.canvas.setAttribute('style', 'width:100%;height:100%;');
+    this.canvas.setAttribute('style', 'width:800px;height:800px; ');
     this.canvasCtx = this.canvas.getContext('2d');
     this.canvasCtx.lineWidth = 0.01;
     this.canvasCtx.strokeStyle = 'rgb(0,0,0)';
@@ -48,7 +48,7 @@ class CanvasRenderer extends BaseRenderer {
 
   /**
    * Update the canvas with the new passed data
-   * @param {Array} data passed grid data
+   * @param {Array} cells passed grid data
    */
   update(cells) {
     cells.map((row) => {

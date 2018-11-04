@@ -11,6 +11,9 @@ class Game {
   constructor({width, height}) {
     this.grid = new Grid(width, height);
     this.renderer = new CanvasRenderer(this.grid);
+    this.lastCall = new Date();
+    this.targetFPS = 60;
+    this.expectedFPSTime = 1000/this.targetFPS;
   }
 
   /**
@@ -25,10 +28,12 @@ class Game {
    */
   render() {
     const self = this;
-    this.renderer.update(this.grid.getNextGeneration());
-    requestAnimationFrame(function() {
-      self.render();
-    });
+    setTimeout( function() {
+      self.renderer.update(self.grid.getNextGeneration());
+      requestAnimationFrame(function() {
+        self.render();
+      });
+    }, this.expectedFPSTime);
   }
 }
 

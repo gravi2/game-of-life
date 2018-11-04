@@ -24,7 +24,7 @@ class Grid {
     for (let w = 0; w < this.width; w++) {
       this.cells[w] = new Array(this.height);
       for (let h = 0; h < this.height; h++) {
-        this.cells[w][h] = new Cell({x: w, y: h, alive: Math.random() > 0.95});
+        this.cells[w][h] = new Cell({x: w, y: h, alive: Math.random() > 0.9});
       }
     }
   }
@@ -39,26 +39,25 @@ class Grid {
     const x = cell.x;
     const y = cell.y;
 
-    if (x > 0 && x < (this.width - 1) && y > 0 && y < (this.height - 1)) {
+    if ( (x - 1) > 0) {
       neighbors.push(this.cells[x - 1][y]);
-      neighbors.push(this.cells[x - 1][y - 1]);
-      neighbors.push(this.cells[x - 1][y + 1]);
-      neighbors.push(this.cells[x][y - 1]);
-      neighbors.push(this.cells[x][y + 1]);
-      neighbors.push(this.cells[x + 1][y]);
-      neighbors.push(this.cells[x + 1][y - 1]);
-      neighbors.push(this.cells[x + 1][y + 1]);
-    } else {
-      if (x === 0) {
-        neighbors.push(this.cells[x + 1][y]);
+      if ( (y - 1) > 0 ) {
+        neighbors.push(this.cells[x - 1][y - 1]);
+        neighbors.push(this.cells[x][y - 1]);
       }
-
-      if (y === 0) {
+      if ( (y + 1) < this.height) {
+        neighbors.push(this.cells[x - 1][y + 1]);
         neighbors.push(this.cells[x][y + 1]);
       }
+    }
 
-      if (x < this.width - 1) {
-        neighbors.push(this.cells[x + 1][y]);
+    if ( (x + 1) < this.width) {
+      neighbors.push(this.cells[x + 1][y]);
+      if ( (y-1) > 0 ) {
+        neighbors.push(this.cells[x + 1][y - 1]);
+      }
+      if ( (y+1) < this.height) {
+        neighbors.push(this.cells[x + 1][y + 1]);
       }
     }
     return neighbors;
@@ -77,7 +76,7 @@ class Grid {
     for (let i = 0; i < this.cells.length; i++) {
       newGeneration[i] = new Array(this.cells[i].length);
       for (let j = 0; j < this.cells[i].length; j++) {
-        newGeneration[i][j] = this.cells[i][j];
+        newGeneration[i][j] = new Cell(this.cells[i][j]);
         newGeneration[i][j].setAlive(this.getNeighbors(this.cells[i][j]));
       }
     }
