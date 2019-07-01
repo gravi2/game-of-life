@@ -31,5 +31,8 @@
     "webpack": "^4.23.1",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.10"
+  },
+  "resolutions": {
+    "babel-cli/chokidar": "^2.0.4"
   }
 }
