@@ -11,7 +11,7 @@ class CanvasRenderer extends BaseRenderer {
   constructor(gridData) {
     super(gridData);
     this.canvas = document.createElement('canvas');
-    this.canvas.setAttribute('style', 'width:800px;height:800px; ');
+    this.canvas.setAttribute('style', 'width:600px;height:600px; ');
     this.canvasCtx = this.canvas.getContext('2d');
     this.canvasCtx.lineWidth = 0.01;
     this.canvasCtx.strokeStyle = 'rgb(0,0,0)';
